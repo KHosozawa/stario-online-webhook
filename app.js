@@ -6,8 +6,10 @@ app.use(express.urlencoded({
 }));
 
 app.post('/', function(req, res) {
-    if (req.body.SubType && req.body.EventData && req.body.EventData.JobName) {
-        console.log(`SubType: ${req.body.SubType}, JobName: ${req.body.EventData.JobName}`);
+    const subType = req.body.SubType;
+    const jobName = req.body.EventData && req.body.EventData.JobName;
+    if ((subType === 'completed' || subType === 'failed') && jobName) {
+        console.log(`SubType: ${subType}, JobName: ${jobName}`);
     }
     return res.send();
 });
