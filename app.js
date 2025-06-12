@@ -6,7 +6,9 @@ app.use(express.urlencoded({
 }));
 
 app.post('/', function(req, res) {
-    console.log(req.body);
+    if (req.body.SubType && req.body.EventData && req.body.EventData.JobName) {
+        console.log(`SubType: ${req.body.SubType}, JobName: ${req.body.EventData.JobName}`);
+    }
     return res.send();
 });
 
